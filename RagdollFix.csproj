@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0DEB755F-D57A-4285-9D70-C592E340CDB4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>bonelab_template</RootNamespace>
-    <AssemblyName>bonelab_template</AssemblyName>
+    <RootNamespace>RagdollFix</RootNamespace>
+    <AssemblyName>RagdollFix</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -38,7 +38,31 @@
   <ItemGroup>
     <Compile Include="BuildInfo.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\BONELAB\MelonLoader\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BoneLib">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\BONELAB\Mods\BoneLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\BONELAB\MelonLoader\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\BONELAB\MelonLoader\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\program files (x86)\Steam\steamapps\common\BONELAB\MelonLoader\Dependencies\Il2CppAssemblyGenerator\Cpp2IL\cpp2il_out\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\BONELAB\MelonLoader\Dependencies\Il2CppAssemblyGenerator\Cpp2IL\cpp2il_out\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,16 +1,16 @@
 ﻿using System.Reflection;
-using bonelab_template;
+using RagdollFix;
 using MelonLoader;
 
-[assembly: AssemblyTitle(bonelab_template.Main.Description)]
-[assembly: AssemblyDescription(bonelab_template.Main.Description)]
-[assembly: AssemblyCompany(bonelab_template.Main.Company)]
-[assembly: AssemblyProduct(bonelab_template.Main.Name)]
-[assembly: AssemblyCopyright("Developed by " + bonelab_template.Main.Author)]
-[assembly: AssemblyTrademark(bonelab_template.Main.Company)]
-[assembly: AssemblyVersion(bonelab_template.Main.Version)]
-[assembly: AssemblyFileVersion(bonelab_template.Main.Version)]
-[assembly: MelonInfo(typeof(bonelab_template.Main), bonelab_template.Main.Name, bonelab_template.Main.Version, bonelab_template.Main.Author, bonelab_template.Main.DownloadLink)]
+[assembly: AssemblyTitle(RagdollFix.Main.Description)]
+[assembly: AssemblyDescription(RagdollFix.Main.Description)]
+[assembly: AssemblyCompany(RagdollFix.Main.Company)]
+[assembly: AssemblyProduct(RagdollFix.Main.Name)]
+[assembly: AssemblyCopyright("Developed by " + RagdollFix.Main.Author)]
+[assembly: AssemblyTrademark(RagdollFix.Main.Company)]
+[assembly: AssemblyVersion(RagdollFix.Main.Version)]
+[assembly: AssemblyFileVersion(RagdollFix.Main.Version)]
+[assembly: MelonInfo(typeof(RagdollFix.Main), RagdollFix.Main.Name, RagdollFix.Main.Version, RagdollFix.Main.Author, RagdollFix.Main.DownloadLink)]
 [assembly: MelonColor(System.ConsoleColor.White)]
 
 // Create and Setup a MelonGame Attribute to mark a Melon as Universal or Compatible with specific Games.

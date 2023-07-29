@@ -1,37 +1,46 @@
-﻿using MelonLoader;
+﻿using BoneLib;
+using MelonLoader;
+using SLZ.VRMK;
+using UnityEngine;
 
-namespace bonelab_template
+namespace RagdollFix
 {
     internal partial class Main : MelonMod
     {
-        public override void OnEarlyInitializeMelon()
-        {
-            base.OnEarlyInitializeMelon();
-        }
+        bool SceneLoaded = false;
+        bool PreviousRagdollState;
+        bool CurrentRagdollState;
 
         public override void OnInitializeMelon()
         {
-            base.OnInitializeMelon();
+            BoneLib.Hooking.OnLevelInitialized += (_) => { OnSceneAwake(); };
+            Preferences.MelonPreferencesCreator();
+            Preferences.BonemenuCreator();
         }
 
-        public override void OnLateInitializeMelon()
+        public void OnSceneAwake()
         {
-            base.OnLateInitializeMelon();
+            SceneLoaded = true;
+            PreviousRagdollState = Player.physicsRig._legsKinematic;
         }
 
         public override void OnUpdate()
         {
-            base.OnUpdate();
+            if (SceneLoaded)
+            {
+                if (Preferences.IsEnabled)
+                {
+                    CurrentRagdollState = BoneLib.Player.physicsRig._legsKinematic;
+                    if (!PreviousRagdollState && CurrentRagdollState)
+                    {
+                        Vector3 Teleport = BoneLib.Player.physicsRig.feet.transform.position + new Vector3(0, 0.25f, 0);
+                        BoneLib.Player.rigManager.Teleport(Teleport, true);
+                    }
+                }
+            }
+
+            PreviousRagdollState = CurrentRagdollState;
         }
 
-        public override void OnFixedUpdate()
-        {
-            base.OnFixedUpdate();
-        }
-
-        public override void OnLateUpdate()
-        {
-            base.OnLateUpdate();
-        }
     }
 }
