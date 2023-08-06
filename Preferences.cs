@@ -1,31 +1,27 @@
 ﻿using BoneLib.BoneMenu;
 using MelonLoader;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RagdollFix
 {
-    internal class Preferences
+    internal static class Preferences
     {
-        public static MelonPreferences_Category MelonPrefCategory { get; private set; }
-        public static MelonPreferences_Entry<bool> MelonPrefEnabled { get; private set; }
+        private static MelonPreferences_Category MelonPrefCategory { get; set; }
+        private static MelonPreferences_Entry<bool> MelonPrefEnabled { get; set; }
         public static bool IsEnabled { get; private set; }
         public static void MelonPreferencesCreator()
         {
             MelonPrefCategory = MelonPreferences.CreateCategory("Crumble");
-            MelonPrefEnabled = MelonPrefCategory.CreateEntry<bool>("IsEnabled", true, null, null, false, false, null, null);
+            MelonPrefEnabled = MelonPrefCategory.CreateEntry("IsEnabled", true);
             IsEnabled = MelonPrefEnabled.Value;
         }
-        public static void BonemenuCreator()
+        public static void BoneMenuCreator()
         {
             var category = MenuManager.CreateCategory("Ragdoll Fix", Color.yellow);
-            category.CreateBoolElement("Mod Toggle", Color.yellow, IsEnabled, new Action<bool>(OnSetEnabled));
+            category.CreateBoolElement("Mod Toggle", Color.yellow, IsEnabled, OnSetEnabled);
         }
-        public static void OnSetEnabled(bool value) //wish I could figure out how to use overflows with bonemenu
+
+        private static void OnSetEnabled(bool value) //wish I could figure out how to use overflows with BONEMENU
         {
             IsEnabled = value;
             MelonPrefEnabled.Value = value;

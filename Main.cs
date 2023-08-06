@@ -1,45 +1,45 @@
 ﻿using BoneLib;
 using MelonLoader;
-using SLZ.VRMK;
 using UnityEngine;
+using static RagdollFix.Preferences;
 
 namespace RagdollFix
 {
     internal partial class Main : MelonMod
     {
-        bool SceneLoaded = false;
-        bool PreviousRagdollState;
-        bool CurrentRagdollState;
+        private bool _sceneLoaded;
+        private bool _previousRagdollState;
+        private bool _currentRagdollState;
 
         public override void OnInitializeMelon()
         {
-            BoneLib.Hooking.OnLevelInitialized += (_) => { OnSceneAwake(); };
-            Preferences.MelonPreferencesCreator();
-            Preferences.BonemenuCreator();
+            Hooking.OnLevelInitialized += _ => { OnSceneAwake(); };
+            MelonPreferencesCreator();
+            BoneMenuCreator();
         }
 
-        public void OnSceneAwake()
+        private void OnSceneAwake()
         {
-            SceneLoaded = true;
-            PreviousRagdollState = Player.physicsRig._legsKinematic;
+            _sceneLoaded = true;
+            _previousRagdollState = Player.physicsRig._legsKinematic;
         }
 
         public override void OnUpdate()
         {
-            if (SceneLoaded)
+            if (_sceneLoaded)
             {
-                if (Preferences.IsEnabled)
+                if (IsEnabled)
                 {
-                    CurrentRagdollState = BoneLib.Player.physicsRig._legsKinematic;
-                    if (!PreviousRagdollState && CurrentRagdollState)
+                    _currentRagdollState = Player.physicsRig._legsKinematic;
+                    if (!_previousRagdollState && _currentRagdollState)
                     {
-                        Vector3 Teleport = BoneLib.Player.physicsRig.feet.transform.position + new Vector3(0, 0.25f, 0);
-                        BoneLib.Player.rigManager.Teleport(Teleport, true);
+                        var teleport = Player.physicsRig.feet.transform.position + new Vector3(0, 0.25f, 0);
+                        Player.rigManager.Teleport(teleport);
                     }
                 }
             }
 
-            PreviousRagdollState = CurrentRagdollState;
+            _previousRagdollState = _currentRagdollState;
         }
 
     }
