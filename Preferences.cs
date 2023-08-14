@@ -11,7 +11,7 @@ namespace RagdollFix
         public static bool IsEnabled { get; private set; }
         public static void MelonPreferencesCreator()
         {
-            MelonPrefCategory = MelonPreferences.CreateCategory("Crumble");
+            MelonPrefCategory = MelonPreferences.CreateCategory("Ragdoll Fix");
             MelonPrefEnabled = MelonPrefCategory.CreateEntry("IsEnabled", true);
             IsEnabled = MelonPrefEnabled.Value;
         }
